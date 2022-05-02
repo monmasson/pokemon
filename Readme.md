@@ -1,6 +1,3 @@
-Poke Express
-
-
 Purpose from Curriculum Development Team: Make a Pokemon app that displays data inside server-side rendered views, learners will gain a deeper understanding of what they built in class and should have some fun with doing it. Encourage students to review class material and use it as a guide also encourage them to use the express documentation. Discourage them from using online tutorials to help them with this because they will have difficulty finding an online tutorial that is at the same level as this assignment, it will be either be too advanced or too simple and will in most cases confuse learners away from this assignments purpose. 
 
 Learning Objectives
@@ -106,10 +103,10 @@ Create a get route /pokemon that will res.status(200).json(pokemon), which will 
 
  
 Set up your index view to show your pokemon data
-Continue working on your Index.jsx view so that you can see:
-The name of each pokemon, as a list item, inside an unordered list
-This list should be dynamically rendered by jsx based on your data from your 'database'
-You'll notice the pokemon names aren't properly capitalized! Let's fix that! Manipulate the data programatically to capitalize the first letter of their names
+ 
+
+Send all pokemon data
+res.status(200).json({pokemon: pokemon})
  
 
 🔴 Commit:
@@ -123,12 +120,9 @@ So, when you go to localhost:3000/pokemon/whatever
 whatever will show up in the browser
  
 
-🔴 Commit:
-"Show view shows req.params.id "
  
 
-Update the route in the server.js to render the show view with the pokemon data
-Oh no! The image is broken because in our database the image links don't have the .jpg ending, let's fix that programatically! Without going back to the database and editing it there, add on .jpg to the end of the pokemon's image data
+Hungry for More?
  
 
- 
+Sign up for Code Wars (Links to an external site.) and try out a challenge (or a few!) in order to keep honing your JavaScript skills!
