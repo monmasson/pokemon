@@ -60,4 +60,4 @@ pokemonRoute.get("/name/:name", (req, res)=>{
     })
 })
 
-module.exports = pokemon;
+module.exports = pokemonRoute;
