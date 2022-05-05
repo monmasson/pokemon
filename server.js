@@ -1,33 +1,36 @@
 //Set up your server
 const express = require("express");
-const Server = express();
+const server = express();
 const PORT = process.env.PORT || 3000
-const pokemon = require("./models/pokemon")
-const mongoConfig = require("./config")
+const pokemon = require("./Route/pokemonRoute")
 const bodyParser = require("body-parser")
 const morgan = require("morgan")
 const cors = require("cors");
 const { schema } = require("./schema/pokeSchema")
+const dotenv = require("dotenv");
+dotenv.config();
+const mongoConfig = require("./config")
 require("dotenv").config()
+
 
 server.use(morgan("dev"))
 server.use(express.json())
 server.use(bodyParser.json())
-server.use ("/",pokemon)
+server.use ("/test",pokemon)
 
 
 
 
 
 //check that you have your Welcome to the Pokemon App! message displaying
-Server.get("/", (req, res) => {
+server.get("/", (req, res) => {
     res.status(200).json({ message: 'Welcome to the Pokemon App!' });
 })
 
 
 
 //Create a get route /pokemon that will res.status(200).json(pokemon), which will display your pokemon data as json in the browser
-Server.get("/pokemon", (req, res) => {
+server.get("/pokemon", (req, res) => {
     res.status(200).json(pokemon)
 })
 
@@ -37,20 +40,20 @@ Server.get("/pokemon", (req, res) => {
 //So, when you go to localhost:3000/pokemon/whatever
 //whatever will show up in the browser
 
-Server.get("/pokemon/:id", (req, res) => {
+server.get("/pokemon/:id", (req, res) => {
     res.status(200).json({ id: req.params.id });
 });
 
 //Send all pokemon data
 //res.status(200).json({pokemon: pokemon})
 
-Server.post ("/pokemon", (req,res) => {
+server.post ("/pokemon", (req,res) => {
     res.status(200).json({pokemon: pokemon})
 });
 
 
 
-Server.listen(PORT, () => {
+server.listen(PORT, () => {
     mongoConfig()
     console.log(`Server is listening at ${PORT}`)
 });

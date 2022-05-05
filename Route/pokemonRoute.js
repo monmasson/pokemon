@@ -8,13 +8,14 @@ const pokemon = [
     {name: "squirtle", img: "http://img.pokemondb.net/artwork/squirtle"},
     {name: "wartortle", img: "http://img.pokemondb.net/artwork/wartortle"}
  ];
- 
- const Poke = require("../schema/pokeSchema")
+ const express = require("express")
+const pokemonRoute = express.Router()
+const Poke = require("../schema/pokeSchema")
 
 pokemonRoute.post("/", (req, res)=>{
     const newPokemon= req.body
 
-    poke.create(newPokemon, (err, pokemon)=>{
+    Poke.create(newPokemon, (err, pokemon)=>{ //poke.insertmany
         if(err){
             res.status(400).json({message: err.message})
         } else {
@@ -25,7 +26,7 @@ pokemonRoute.post("/", (req, res)=>{
 
 pokemonRoute.get("/:id", (req, res)=>{
     const id = req.params.id
-    poke.findById(id, (err, pokemon)=>{
+    Poke.findById(id, (err, pokemon)=>{
         if(err){
             res.status(404).json({message: err.message})
         }else{
@@ -38,7 +39,7 @@ pokemonRoute.put("/:id", (req, res)=>{
     const id = req.params.id
     const updatedPokemon = req.body
 
-    poke.findByIdAndUpdate(id, updatedPokemon, {new: true},(err, updatedPokemon)=>{
+    Poke.findByIdAndUpdate(id, updatedPokemon, {new: true},(err, updatedPokemon)=>{
         if(err){
             res.status(404).json({message: err.message})
         } else {
@@ -51,7 +52,7 @@ pokemonRoute.get("/name/:name", (req, res)=>{
     const name = req.params.name
     // returns an array [] of ALL things that match
     // findOne returns an object of EXACTLY ONE THING
-    poke.findOne({name: name, img: img}, (err, pokemon)=>{
+    Poke.findOne({name: name, img: img}, (err, pokemon)=>{
         if(err){
             res.status(404).json({message: err.message})
         } else {
@@ -59,5 +60,17 @@ pokemonRoute.get("/name/:name", (req, res)=>{
         }
     })
 })
+pokemonRoute.post("/seed", (req, res)=>{
+    const newPokemon1= req.body
+
+    Poke.insertMany(pokemon, (err, pokemon)=>{ 
+        if(err){
+            res.status(400).json({message: err.message})
+        } else {
+            res.status(201).json({pokemon})
+        }
+    })
+})
 
 module.exports = pokemonRoute;
+
