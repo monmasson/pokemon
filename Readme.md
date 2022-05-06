@@ -131,3 +131,9 @@ Week 2 Day 1- Lab/HW Copy 2   DONE and WORKING!!!! YAY!!!
 When a makes a get request to the /pokemon route they will see an array of pokemon objects
 When a user makes a request to /pokemon/:name, a user will retrieve that pokemon by name
 When a user posts a form it will create a brand new pokemon, and then return the added pokemon
+
+Week 2 Day 2- Lab/HW Copy 2
+ADDED SEED ROUTE AND CLEAR ROUTES 
+Assignment
+Add A Seed Route to Pokemon that adds the entire original pokemon array
+Add a Clear Route to Remove Pokemon from database
