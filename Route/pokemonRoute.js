@@ -12,10 +12,11 @@ const pokemon = [
 const pokemonRoute = express.Router()
 const Poke = require("../schema/pokeSchema")
 
+//When a user posts to /pokemon a user will receive the posted pokemon
 pokemonRoute.post("/", (req, res)=>{
     const newPokemon= req.body
 
-    Poke.create(newPokemon, (err, pokemon)=>{ //poke.insertmany
+    Poke.create(newPokemon, (err, pokemon)=>{ 
         if(err){
             res.status(400).json({message: err.message})
         } else {
@@ -23,6 +24,9 @@ pokemonRoute.post("/", (req, res)=>{
         }
     })
 })
+
+//When a user goes to the /pokemon route they will see an array of pokemon
+
 
 pokemonRoute.get("/:id", (req, res)=>{
     const id = req.params.id
@@ -47,8 +51,8 @@ pokemonRoute.put("/:id", (req, res)=>{
         }
     })
 })
-
-pokemonRoute.get("/name/:name", (req, res)=>{
+//When a user goes to /pokemon/:name, they will be see that pokemon's info by name
+pokemonRoute.get("/:name", (req, res)=>{
     const name = req.params.name
     // returns an array [] of ALL things that match
     // findOne returns an object of EXACTLY ONE THING
@@ -60,17 +64,21 @@ pokemonRoute.get("/name/:name", (req, res)=>{
         }
     })
 })
-pokemonRoute.post("/seed", (req, res)=>{
-    const newPokemon1= req.body
 
-    Poke.insertMany(pokemon, (err, pokemon)=>{ 
+
+//Add a Clear Route to Remove ALL Pokemon from database
+
+/*pokemonRoute.delete("/clear", (req, res)=>{
+    // delete many - take a param to match OR can be blank
+    // if blank, it will delete EVERYTHING
+    Poke.deleteMany((err)=>{
         if(err){
-            res.status(400).json({message: err.message})
-        } else {
-            res.status(201).json({pokemon})
+            res.status(404).json({message: err.message})
+        }else{
+            res.status(204).json({message: "DELETED"})
         }
     })
-})
+})*/
 
 module.exports = pokemonRoute;
 

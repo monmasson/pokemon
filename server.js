@@ -3,20 +3,24 @@ const express = require("express");
 const server = express();
 const PORT = process.env.PORT || 3000
 const pokemon = require("./Route/pokemonRoute")
+const seedRoute = require("./Route/seedRoute")
 const bodyParser = require("body-parser")
 const morgan = require("morgan")
 const cors = require("cors");
 const { schema } = require("./schema/pokeSchema")
 const dotenv = require("dotenv");
 dotenv.config();
-const mongoConfig = require("./config")
+const mongoConfig = require("./config");
+const clearRoute = require("./Route/clearRoute");
 require("dotenv").config()
 
 
 server.use(morgan("dev"))
 server.use(express.json())
 server.use(bodyParser.json())
-server.use ("/test",pokemon)
+server.use ("/",pokemon)
+server.use("/",seedRoute)
+server.use("/", clearRoute)
 
 
 
