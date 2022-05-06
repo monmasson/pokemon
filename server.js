@@ -16,7 +16,7 @@ require("dotenv").config()
 server.use(morgan("dev"))
 server.use(express.json())
 server.use(bodyParser.json())
-server.use ("/test",pokemon)
+server.use ("/",pokemon)
 
 
 
