@@ -18,7 +18,7 @@ pokemonRoute.get("/", (req, res) => {
 })
 
 //When a user posts to /pokemon a user will receive the posted pokemon
-pokemonRoute.post("/", (req, res)=>{
+/*pokemonRoute.post("/", (req, res)=>{
     const newPokemon= req.body
 
     Poke.create(newPokemon, (err, pokemon)=>{ 
@@ -29,6 +29,7 @@ pokemonRoute.post("/", (req, res)=>{
         }
     })
 })
+*/
 
 //Setting up your show route .Inside your server.js, add a new get route /pokemon/:id
 //That will res.status(200).json({id: req.params.id});
@@ -57,7 +58,7 @@ pokemonRoute.put("/:id", (req, res)=>{
     const id = req.params.id
     const updatedPokemon = req.body
 
-    Poke.findByIdAndUpdate(id, updatedPokemon, {new: true},(err, updatedPokemon)=>{
+    Poke.updateOne({_id:id}, updatedPokemon, {new: true},(err, updatedPokemon)=>{
         if(err){
             res.status(404).json({message: err.message})
         } else {

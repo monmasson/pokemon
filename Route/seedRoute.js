@@ -14,7 +14,7 @@ const pokemon = [
     {name: "wartortle", img: "http://img.pokemondb.net/artwork/wartortle"}
  ];
 
-seedRoute.post("/seed", (req, res)=>{
+seedRoute.post("/", (req, res)=>{
     const newPokemon1= req.body
 
     Poke.insertMany(pokemon, (err, pokemon)=>{ 

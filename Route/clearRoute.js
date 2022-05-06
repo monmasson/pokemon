@@ -15,7 +15,7 @@ const pokemon = [
     {name: "wartortle", img: "http://img.pokemondb.net/artwork/wartortle"}
  ];
 
-clearRoute.delete("/clear", (req, res)=>{
+clearRoute.delete("/", (req, res)=>{
     // delete many - take a param to match OR can be blank
     // if blank, it will delete EVERYTHING
     Poke.deleteMany((err)=>{
