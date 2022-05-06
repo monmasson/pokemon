@@ -12,6 +12,11 @@ const pokemon = [
 const pokemonRoute = express.Router()
 const Poke = require("../schema/pokeSchema")
 
+//Create a get route /pokemon that will res.status(200).json(pokemon), which will display your pokemon data as json in the browser
+pokemonRoute.get("/", (req, res) => {
+    res.status(200).json(pokemon)
+})
+
 //When a user posts to /pokemon a user will receive the posted pokemon
 pokemonRoute.post("/", (req, res)=>{
     const newPokemon= req.body
@@ -24,6 +29,15 @@ pokemonRoute.post("/", (req, res)=>{
         }
     })
 })
+
+//Setting up your show route .Inside your server.js, add a new get route /pokemon/:id
+//That will res.status(200).json({id: req.params.id});
+//So, when you go to localhost:3000/pokemon/whatever
+//whatever will show up in the browser
+
+pokemonRoute.get("/show/:id", (req, res) => {
+    res.status(200).json({ id: req.params.id });
+});
 
 //When a user goes to the /pokemon route they will see an array of pokemon
 
@@ -64,6 +78,46 @@ pokemonRoute.get("/:name", (req, res)=>{
         }
     })
 })
+
+
+
+pokemonRoute.post('/', (req, res) => {
+  const freshPoke = req.body
+  Poke.create(freshPoke, (error, createdPoke) => {
+    if (error) {
+      console.error(error);
+      res.status(400).json({
+        error: 'an error has occurred'
+      })
+    } else {
+      console.log('Pokemon created successfully');
+      res.status(201).json({
+        message: 'Created Successfully',
+        poke: createdPoke
+      })
+    }
+  })
+})
+
+pokemonRoute.delete('/:id', (req, res) => {
+      Poke.deleteOne({ // deletes one user
+        _id: req.params.id // only the user we want to delete
+      }, (error, resultB) => {
+        if (error) {
+          console.error(error); // error handling magic
+          res.status(404).json({
+            error: 'No Pokemon found!'
+          })
+        } else {
+          console.log('Successfully deleted Pokemon');
+          res.status(204).json({}); // sends back 204 when we succeed in both operations.
+        }
+      })
+    })
+
+
+
+
 
 
 module.exports = pokemonRoute;

@@ -18,9 +18,9 @@ require("dotenv").config()
 server.use(morgan("dev"))
 server.use(express.json())
 server.use(bodyParser.json())
-server.use ("/",pokemon)
-server.use("/",seedRoute)
-server.use("/", clearRoute)
+server.use ("/pokemon",pokemon)
+server.use("/seedRoute", seedRoute)
+server.use("/clearRoute",clearRoute)
 
 
 
