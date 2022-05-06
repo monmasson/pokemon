@@ -126,3 +126,8 @@ Hungry for More?
  
 
 Sign up for Code Wars (Links to an external site.) and try out a challenge (or a few!) in order to keep honing your JavaScript skills!
+
+Week 2 Day 1- Lab/HW Copy 2   DONE and WORKING!!!! YAY!!!
+When a makes a get request to the /pokemon route they will see an array of pokemon objects
+When a user makes a request to /pokemon/:name, a user will retrieve that pokemon by name
+When a user posts a form it will create a brand new pokemon, and then return the added pokemon
